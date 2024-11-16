@@ -1,0 +1,1016 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../7.3_transformaciones_intermedias/">
+      
+      
+        <link rel="next" href="../../08_centralizacion_info/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>4. Transformación de Datos para el Modelo Relacional - Manual de usuario Modelo Analítico de Optimización de Procesos: Empresas</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="#d89717" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#transformacion-de-datos-para-el-modelo-relacional" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Manual de usuario Modelo Analítico de Optimización de Procesos: Empresas" class="md-header__button md-logo" aria-label="Manual de usuario Modelo Analítico de Optimización de Procesos: Empresas" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Manual de usuario Modelo Analítico de Optimización de Procesos: Empresas
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4. Transformación de Datos para el Modelo Relacional
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Manual de usuario Modelo Analítico de Optimización de Procesos: Empresas" class="md-nav__button md-logo" aria-label="Manual de usuario Modelo Analítico de Optimización de Procesos: Empresas" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Manual de usuario Modelo Analítico de Optimización de Procesos: Empresas
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_glosario/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GLOSARIO DE TÉRMINOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_objetivo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OBJETIVO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_alcance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ALCANCE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_logica_modelo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LÓGICA DEL MODELO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_consideraciones_uso/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CONSIDERACIONES DE USO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_recoleccion_info/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RECOLECCIÓN DE INFORMACIÓN Y BASES DE DATOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    TRANSFORMACIÓN Y CARGA DE DATOS>
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            TRANSFORMACIÓN Y CARGA DE DATOS>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7.1_reglas_generales/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Reglas Generales
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7.2_carga_parametricas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Carga de Paramétricas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7.3_transformaciones_intermedias/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Transformaciones Intermedias y Satisfacción
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    4. Transformación de Datos para el Modelo Relacional
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    4. Transformación de Datos para el Modelo Relacional
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tablas-dim" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tablas Dim
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tablas-fact" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tablas Fact
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08_centralizacion_info/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CENTRALIZACIÓN DE LA INFORMACIÓN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    VISUALIZACIÓN DE RESULTADOS>
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            VISUALIZACIÓN DE RESULTADOS>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../visualizacion_resultados/9.1_medidas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Medidas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../visualizacion_resultados/9.2_campos_calculados/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Campos Calculados
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../visualizacion_resultados/9.3_menu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Menú
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../visualizacion_resultados/9.4_vision_modelo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Visión General del Modelo Empresarial
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../visualizacion_resultados/9.5_Caracterizacion_Empresas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Caracterización de Empresas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../visualizacion_resultados/9.6_Comportamiento_Empresarial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Comportamiento Empresarial
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../visualizacion_resultados/9.7_Adquisicion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Adquisición y Retención de Empresas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../visualizacion_resultados/9.8_seguimiento_indicadores/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Seguimiento de Indicadores Operativos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../visualizacion_resultados/9.9_Satisfaccion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Seguimiento de Indicadores Financieros
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../visualizacion_resultados/9.10_Seguimiento_operativos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Seguimiento de Indicadores de Satisfacción
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tablas-dim" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tablas Dim
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tablas-fact" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tablas Fact
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="transformacion-de-datos-para-el-modelo-relacional">Transformación de Datos para el Modelo Relacional<a class="headerlink" href="#transformacion-de-datos-para-el-modelo-relacional" title="Permanent link">&para;</a></h1>
+<p>Las transformaciones de los datos para el modelo relacional se realizan en algunas consultas y dentro del ambiente de Power BI, en Power Query y DAX.  Como se indica en el modelo lógico, todas las entradas se leen desde Minerva, Servidor de pruebas y de manera Local (solo para el formato de Madurez). A continuación, se listarán los procesos efectuados en las tablas junto con reglas de negocio aplicadas:</p>
+<h2 id="tablas-dim">Tablas Dim<a class="headerlink" href="#tablas-dim" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>EstadosDim</strong></li>
+<li>Tabla paramétrica de descripción de estado de afiliación. Se lee desde la base Subsidio en el servidor de Minerva, tabla <code>subsidio.subsi36</code>.</li>
+<li>
+<p>Se eliminan columnas que no se usarán en el modelo, dejando solo <code>codest</code> y <code>detest</code>.</p>
+</li>
+<li>
+<p><strong>ZoneDim</strong></p>
+</li>
+<li>Tabla paramétrica de descripción de las zonas. Se lee desde la base Subsidio en el servidor de Minerva, tabla <code>schoolkits.SK13</code>.</li>
+<li>
+<p>Se eliminan columnas que no se usarán en el modelo, dejando solo <code>id</code> o <code>RUTA</code>.</p>
+</li>
+<li>
+<p><strong>FestivosColombia</strong></p>
+</li>
+<li>
+<p>Tabla con información de fechas festivas en Colombia. Función definida en Power Query, usando la desarrollada por Miguel Caballero &amp; Fabián Torres: <a href="https://www.excelfreeblog.com">Excel Free Blog</a>. Internamente, utiliza la web: <a href="https://www.cuandoenelmundo.com">Cuando En El Mundo</a>.</p>
+</li>
+<li>
+<p><strong>ZoneDimCoor</strong></p>
+</li>
+<li>
+<p>Tabla con las coordenadas para las zonas. Sirve para homologar los nombres de las zonas y graficar con exactitud en las visualizaciones. Se lee de la base de pruebas <code>dwh</code>, tabla <code>dwh.Coordenadas</code>.</p>
+</li>
+<li>
+<p><strong>Apo_Proy</strong></p>
+</li>
+<li>Tabla paramétrica con la proyección de aportes empresariales, extraída inicialmente del documento “Id 114. Cumplimiento de los aportes”. Se lee desde la base de pruebas, tabla <code>dwh.Proyeccion_cumpl_aportes</code>.</li>
+<li>Se cambian formatos de columnas.</li>
+<li>Se renombra la columna <code>periodo</code> a <code>Mes</code>.</li>
+<li>
+<p>Se crea la columna <code>Periodo</code> con el periodo numérico de la columna <code>Mes</code>.</p>
+</li>
+<li>
+<p><strong>TipSocDim</strong></p>
+</li>
+<li>
+<p>Tabla paramétrica de tipo de sociedad empresarial. El origen es el servidor Minerva, tabla <code>subsidio.subsi54</code>.</p>
+</li>
+<li>
+<p><strong>MetasCoberturaAfiliacion</strong></p>
+</li>
+<li>Tabla paramétrica con información de proyecciones de afiliación. Proviene del servidor de pruebas, tabla <code>dwh.Meta_proyeccion_cobertura_afiliacion</code>.</li>
+<li>Se crea la columna <code>KeyHistorico</code> como llave con la tabla <code>Histórico</code>.</li>
+<li>
+<p>Se filtra solo información para empresas.</p>
+</li>
+<li>
+<p><strong>IndicadoresOMDummy_1</strong></p>
+</li>
+<li>
+<p>Tabla dummy con los indicadores que aplican para medición matriz RASCI. La información proviene del archivo Drive <code>Indicadores.xlsx</code>, hoja 1.</p>
+</li>
+<li>
+<p><strong>IndicadoresOMDummy_2</strong></p>
+</li>
+<li>Tabla dummy con los indicadores para satisfacción y comportamiento. La información proviene del archivo Drive <code>Indicadores.xlsx</code>, hoja 3.</li>
+</ul>
+<hr />
+<h2 id="tablas-fact">Tablas Fact<a class="headerlink" href="#tablas-fact" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Madurez</strong></li>
+<li>La tabla contiene el resultado de la evaluación de madurez empresarial efectuada en Cajamag. Insumo: archivo <code>Formato Evaluación Madurez Modelo Empresarial.xlsx</code>.</li>
+<li>
+<p>Se eliminan filas y columnas innecesarias, dejando solo la tabla que comienza en la fila 164.</p>
+</li>
+<li>
+<p><strong>Historico</strong></p>
+</li>
+<li>Contiene información histórica de vinculaciones de empresas con Cajamag, incluyendo datos sociodemográficos. Se extrae del servidor de pruebas, tabla <code>dwh.op_sec_EmpresasSubsi02_v2</code>.</li>
+<li>En las consultas intermedias, se relacionan las tablas <code>xml4.xml4c085</code> y <code>xml4.xml4c086</code> de Minerva con la tabla <code>op_Periodos</code> para generar la tabla final en <code>dwh</code>.</li>
+<li>Restricción de la columna <code>periodo</code> en <code>xml4.xml4c085</code> para incluir solo empresas vinculadas entre los periodos de estudio.</li>
+<li>Unión con <code>xml4.xml4c086</code> mediante un <code>LEFT JOIN</code> por el campo <code>nit</code> para información de trabajadores.</li>
+<li>Ajustes de nombres y eliminación de columnas no utilizadas.</li>
+<li>Creación de diversas columnas (<code>KeyHistoricosG</code>, <code>KeyIgestion</code>, <code>KeySatisfacion</code>, <code>KeyMoraEmp</code>, entre otras) para relaciones con otras tablas.</li>
+<li>Cálculos adicionales en columnas (<code>AntiguedadDias</code>, <code>AntiguedadAño(Aprox)</code>, <code>TipoEmpresa</code>, entre otras).</li>
+<li>
+<p>Inclusión de descripciones y porcentajes en DAX: <code>EstadoDes</code>, <code>%Fem</code>, <code>%Mas</code>, <code>PromedioAporteMensual</code>, <code>PromedioServiciosMensual</code>.</p>
+</li>
+<li>
+<p><strong>HistoricoAportesEmp</strong></p>
+</li>
+<li>Información histórica de aportes empresariales. Se extrae del servidor Minerva.</li>
+<li>Uso de columnas <code>apomes</code> y <code>periodo</code> como valores referentes.</li>
+<li>
+<p>Creación de columnas clave (<code>KeyHistoricos</code>) y otras en DAX: <code>NoAfil</code>, <code>Año</code>.</p>
+</li>
+<li>
+<p><strong>HistoricoMoraEmp</strong></p>
+</li>
+<li>Información de mora presunta. Base: tabla <code>xml4.xml4c070</code> en Minerva.</li>
+<li>Unión con <code>subsidio.subsi173</code> para identificar registros notificados.</li>
+<li>
+<p>Creación de columnas clave (<code>KeyHistoricos</code>) y otras transformaciones necesarias.</p>
+</li>
+<li>
+<p><strong>HistoricoANS</strong></p>
+</li>
+<li>Histórico de tiempos de afiliación. Base: tabla <code>subsidio.subsi02</code> en Minerva.</li>
+<li>
+<p>Inclusión de columnas clave (<code>KeyHistoricos</code>, <code>KeyMetaIndicadores</code>) y cálculos en DAX (<code>DiasTrabajados</code>, <code>c_ANS</code>).</p>
+</li>
+<li>
+<p><strong>HistoricoRecuperado</strong></p>
+</li>
+<li>Histórico de aportes recuperados. Base: tabla <code>subsidio.subsi113</code> en Minerva.</li>
+<li>Cruces adicionales con <code>subsidio.subsi115</code> y <code>subsidio.subsi11</code> para obtener valores pagados por convenio.</li>
+<li>
+<p>Creación de columnas clave (<code>KeyHistoricos</code>) y cálculos auxiliares (<code>FechaActual</code>, <code>PeriodoAnalisis</code>, <code>DiasEntre</code>).</p>
+</li>
+<li>
+<p><strong>Satisfaccion</strong></p>
+</li>
+<li>Histórico de respuestas de encuestas de satisfacción.</li>
+<li>Filtrado por empresas y creación de claves (<code>KeyHistorico</code>) y validadores (<code>Validador_total_encuestas</code>).</li>
+<li>Cálculo en DAX: columna <code>Polaridad</code> para clasificar respuestas como "Satisfecho" o "Insatisfecho".</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../js/init_mermaid.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/components/prism-dax.min.js"></script>
+      
+    
+  </body>
+</html>
