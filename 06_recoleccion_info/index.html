@@ -1,0 +1,1125 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../05_consideraciones_uso/">
+      
+      
+        <link rel="next" href="../transformacion_carga/7.1_reglas_generales/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>RECOLECCIÓN DE INFORMACIÓN Y BASES DE DATOS - Manual de usuario Modelo Analítico de Optimización de Procesos: Empresas</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="#d89717" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#consolidacion-de-datos-del-modelo-empresarial" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="Manual de usuario Modelo Analítico de Optimización de Procesos: Empresas" class="md-header__button md-logo" aria-label="Manual de usuario Modelo Analítico de Optimización de Procesos: Empresas" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Manual de usuario Modelo Analítico de Optimización de Procesos: Empresas
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              RECOLECCIÓN DE INFORMACIÓN Y BASES DE DATOS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Manual de usuario Modelo Analítico de Optimización de Procesos: Empresas" class="md-nav__button md-logo" aria-label="Manual de usuario Modelo Analítico de Optimización de Procesos: Empresas" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Manual de usuario Modelo Analítico de Optimización de Procesos: Empresas
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_glosario/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GLOSARIO DE TÉRMINOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_objetivo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OBJETIVO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_alcance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ALCANCE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_logica_modelo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LÓGICA DEL MODELO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_consideraciones_uso/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CONSIDERACIONES DE USO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    RECOLECCIÓN DE INFORMACIÓN Y BASES DE DATOS
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    RECOLECCIÓN DE INFORMACIÓN Y BASES DE DATOS
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#explicacion-de-los-campos-de-la-tabla-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explicación de los Campos de la Tabla 2
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    TRANSFORMACIÓN Y CARGA DE DATOS>
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            TRANSFORMACIÓN Y CARGA DE DATOS>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transformacion_carga/7.1_reglas_generales/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Reglas Generales
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transformacion_carga/7.2_carga_parametricas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Carga de Paramétricas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transformacion_carga/7.3_transformaciones_intermedias/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Transformaciones Intermedias y Satisfacción
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transformacion_carga/7.4_datos_modelo_relacional/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Transformación de Datos para el Modelo Relacional
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_centralizacion_info/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CENTRALIZACIÓN DE LA INFORMACIÓN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    VISUALIZACIÓN DE RESULTADOS>
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            VISUALIZACIÓN DE RESULTADOS>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visualizacion_resultados/9.1_medidas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Medidas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visualizacion_resultados/9.2_campos_calculados/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Campos Calculados
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visualizacion_resultados/9.3_menu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Menú
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visualizacion_resultados/9.4_vision_modelo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Visión General del Modelo Empresarial
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visualizacion_resultados/9.5_Caracterizacion_Empresas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Caracterización de Empresas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visualizacion_resultados/9.6_Comportamiento_Empresarial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Comportamiento Empresarial
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visualizacion_resultados/9.7_Adquisicion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Adquisición y Retención de Empresas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visualizacion_resultados/9.8_seguimiento_indicadores/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Seguimiento de Indicadores Operativos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visualizacion_resultados/9.9_Satisfaccion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Seguimiento de Indicadores Financieros
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visualizacion_resultados/9.10_Seguimiento_operativos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Seguimiento de Indicadores de Satisfacción
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#explicacion-de-los-campos-de-la-tabla-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explicación de los Campos de la Tabla 2
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="consolidacion-de-datos-del-modelo-empresarial">Consolidación de Datos del Modelo Empresarial<a class="headerlink" href="#consolidacion-de-datos-del-modelo-empresarial" title="Permanent link">&para;</a></h1>
+<p>La presente sección del documento consolida los datos con los cuales se desarrolló el modelo de Optimización de Procesos Modelo Empresarial. Para ello, se llevó a cabo un proceso de limpieza y calidad de los datos. A continuación, se explican los campos de la Tabla 2:</p>
+<h2 id="explicacion-de-los-campos-de-la-tabla-2">Explicación de los Campos de la Tabla 2<a class="headerlink" href="#explicacion-de-los-campos-de-la-tabla-2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>a) Nombre Tabla en Modelo:</strong><br />
+  El nombre de la tabla utilizada en el modelo de Power BI.</p>
+</li>
+<li>
+<p><strong>b) Ubicación Origen:</strong><br />
+  Indica dónde se encuentra almacenada la tabla.</p>
+</li>
+<li>
+<p><strong>c) Tablas de Origen:</strong><br />
+  Especifica el nombre explícito de la(s) tabla(s) que consume el modelo.</p>
+</li>
+<li>
+<p><strong>d) Descripción:</strong><br />
+  Proporciona una descripción de la información contenida en cada tabla del modelo.</p>
+</li>
+<li>
+<p><strong>e) ¿Requiere Transformación Intermedia?:</strong><br />
+  Indica si se creó una transformación intermedia entre bases de datos y servidores. Tendrá el estado:</p>
+</li>
+<li><strong>"Sí"</strong>: Cuando existe una transformación intermedia. (Para más información, leer la sección 7.3).  </li>
+<li>
+<p><strong>"No"</strong>: Cuando no existe tal transformación.</p>
+</li>
+<li>
+<p><strong>f) ¿Requiere Carga en DWH?:</strong><br />
+  Especifica si es necesario subir una tabla al servidor de pruebas DWH o si la tabla proviene de una transformación. Tendrá el estado:</p>
+</li>
+<li><strong>"Sí"</strong>: Si requiere carga en DWH o es producto de una transformación. (Para más información, leer la sección 7.2).  </li>
+<li>
+<p><strong>"No"</strong>: Si no aplica.</p>
+</li>
+<li>
+<p><strong>g) Frecuencia Actualización Recomendada:</strong><br />
+  Indica la frecuencia con la que se recomienda actualizar la información o los casos en los que se debería realizar la actualización.</p>
+</li>
+</ul>
+<details>
+  <summary>1. Periodos</summary>
+  <p><strong>Ubicación origen</strong>: 172.16.3.110 / dwh</p>
+  <p><strong>Tablas de Origen</strong>: dwh.op_Periodos</p>
+  <p><strong>Descripción</strong>: Periodos de Análisis en el Tablero</p>
+  <p><strong>¿Requiere Transformación Intermedia?</strong>: Sí</p>
+  <p><strong>¿Requiere Carga en dwh?</strong>: Sí</p>
+  <p><strong>Frecuencia Actualización Recomendada</strong>: Mensual</p>
+</details>
+
+<details>
+  <summary>2. EstadosDim</summary>
+  <p><strong>Ubicación origen</strong>: Minerva/subsidio</p>
+  <p><strong>Tablas de Origen</strong>: subsidio.subsi36</p>
+  <p><strong>Descripción</strong>: Paramétrica de descripción de estado de afiliación</p>
+  <p><strong>¿Requiere Transformación Intermedia?</strong>: No</p>
+  <p><strong>¿Requiere Carga en dwh?</strong>: No</p>
+  <p><strong>Frecuencia Actualización Recomendada</strong>: Mensual</p>
+</details>
+
+<details>
+  <summary>3. ZoneDim</summary>
+  <p><strong>Ubicación origen</strong>: Minerva/ schoolkits</p>
+  <p><strong>Tablas de Origen</strong>: schoolkits.SK13</p>
+  <p><strong>Descripción</strong>: Paramétrica de descripción de Zonas</p>
+  <p><strong>¿Requiere Transformación Intermedia?</strong>: No</p>
+  <p><strong>¿Requiere Carga en dwh?</strong>: No</p>
+  <p><strong>Frecuencia Actualización Recomendada</strong>: Mensual</p>
+</details>
+
+<details>
+  <summary>4. FestivosColombia</summary>
+  <p><strong>Ubicación origen</strong>: https://www.cuandoenelmundo.com/</p>
+  <p><strong>Tablas de Origen</strong>: N/A</p>
+  <p><strong>Descripción</strong>: Tabla con Información de fechas festivas en Colombia</p>
+  <p><strong>¿Requiere Transformación Intermedia?</strong>: No</p>
+  <p><strong>¿Requiere Carga en dwh?</strong>: No</p>
+  <p><strong>Frecuencia Actualización Recomendada</strong>: N/A</p>
+</details>
+
+<details>
+  <summary>5. ZoneDimCoor</summary>
+  <p><strong>Ubicación origen</strong>: 172.16.3.110 / dwh</p>
+  <p><strong>Tablas de Origen</strong>: dwh.Coordenadas</p>
+  <p><strong>Descripción</strong>: Tabla con las coordenadas para las Zonas</p>
+  <p><strong>¿Requiere Transformación Intermedia?</strong>: No</p>
+  <p><strong>¿Requiere Carga en dwh?</strong>: Sí</p>
+  <p><strong>Frecuencia Actualización Recomendada</strong>: Solo si se implementa una nueva zona</p>
+</details>
+
+<details>
+  <summary>6. Madurez</summary>
+  <p><strong>Ubicación origen</strong>: Por definir Cajamag</p>
+  <p><strong>Tablas de Origen</strong>: Formato Evaluación Madurez Modelo Empresarial.xlsx</p>
+  <p><strong>Descripción</strong>: Tabla con resultado encuesta de Madurez empresarial</p>
+  <p><strong>¿Requiere Transformación Intermedia?</strong>: No</p>
+  <p><strong>¿Requiere Carga en dwh?</strong>: No</p>
+  <p><strong>Frecuencia Actualización Recomendada</strong>: Cada 6 meses</p>
+</details>
+
+<details>
+  <summary>7. Apo_Proy</summary>
+  <p><strong>Ubicación origen</strong>: 172.16.3.110 / dwh</p>
+  <p><strong>Tablas de Origen</strong>: dwh.Proyeccion_cumpl_aportes</p>
+  <p><strong>Descripción</strong>: Tabla con la proyección de aportes empresariales</p>
+  <p><strong>¿Requiere Transformación Intermedia?</strong>: No</p>
+  <p><strong>¿Requiere Carga en dwh?</strong>: Sí</p>
+  <p><strong>Frecuencia Actualización Recomendada</strong>: Cada año</p>
+</details>
+
+<details>
+  <summary>8. TablaAfiliaciones</summary>
+  <p><strong>Ubicación origen</strong>: N/A</p>
+  <p><strong>Tablas de Origen</strong>: N/A</p>
+  <p><strong>Descripción</strong>: Tabla de ayuda para visuales</p>
+  <p><strong>¿Requiere Transformación Intermedia?</strong>: No</p>
+  <p><strong>¿Requiere Carga en dwh?</strong>: No</p>
+  <p><strong>Frecuencia Actualización Recomendada</strong>: N/A</p>
+</details>
+
+<details>
+  <summary>9. TipSocDim</summary>
+  <p><strong>Ubicación origen</strong>: Minerva/subsidio</p>
+  <p><strong>Tablas de Origen</strong>: subsidio.subsi54</p>
+  <p><strong>Descripción</strong>: Tabla paramétrica de tipo de sociedad empresarial</p>
+  <p><strong>¿Requiere Transformación Intermedia?</strong>: No</p>
+  <p><strong>¿Requiere Carga en dwh?</strong>: No</p>
+  <p><strong>Frecuencia Actualización Recomendada</strong>: Mensual</p>
+</details>
+
+<details>
+  <summary>10. MetasCoberturaAfiliacion</summary>
+  <p><strong>Ubicación origen</strong>: 172.16.3.110 / dwh</p>
+  <p><strong>Tablas de Origen</strong>: dwh.Meta_proyeccion_cobertura_afiliacion</p>
+  <p><strong>Descripción</strong>: Tabla con la proyección de afiliación</p>
+  <p><strong>¿Requiere Transformación Intermedia?</strong>: No</p>
+  <p><strong>¿Requiere Carga en dwh?</strong>: Sí</p>
+  <p><strong>Frecuencia Actualización Recomendada</strong>: Cada año</p>
+</details>
+
+<details>
+  <summary>11. Historico</summary>
+  <p><strong>Ubicación origen</strong>: 172.16.3.110 / dwh</p>
+  <p><strong>Tablas de Origen</strong>: dwh.op_sec_EmpresasSubsi02_v2</p>
+  <p><strong>Descripción</strong>: Tabla con histórico de afiliaciones</p>
+  <p><strong>¿Requiere Transformación Intermedia?</strong>: Sí</p>
+  <p><strong>¿Requiere Carga en dwh?</strong>: Sí</p>
+  <p><strong>Frecuencia Actualización Recomendada</strong>: Mensual</p>
+</details>
+
+<details>
+  <summary>12. HistoricoAportesEmp</summary>
+  <p><strong>Ubicación origen</strong>: Minerva/subsidio y xml4</p>
+  <p><strong>Tablas de Origen</strong>: subsidio.subsi11, xml4.xml4c085</p>
+  <p><strong>Descripción</strong>: Tabla con histórico de aportes empresariales</p>
+  <p><strong>¿Requiere Transformación Intermedia?</strong>: No</p>
+  <p><strong>¿Requiere Carga en dwh?</strong>: No</p>
+  <p><strong>Frecuencia Actualización Recomendada</strong>: Mensual</p>
+</details>
+
+<details>
+  <summary>13. HistoricoMoraEmp</summary>
+  <p><strong>Ubicación origen</strong>: Minerva/xml4, Minerva/subsidio</p>
+  <p><strong>Tablas de Origen</strong>: xml4.xml4c070, subsidio.subsi173</p>
+  <p><strong>Descripción</strong>: Tabla con histórico de presunta mora</p>
+  <p><strong>¿Requiere Transformación Intermedia?</strong>: No</p>
+  <p><strong>¿Requiere Carga en dwh?</strong>: No</p>
+  <p><strong>Frecuencia Actualización Recomendada</strong>: Mensual</p>
+</details>
+
+<details>
+  <summary>14. HistoricoANS</summary>
+  <p><strong>Ubicación origen</strong>: Minerva/subsidio</p>
+  <p><strong>Tablas de Origen</strong>: subsidio.subsi02</p>
+  <p><strong>Descripción</strong>: Tabla con histórico de tiempos de afiliación</p>
+  <p><strong>¿Requiere Transformación Intermedia?</strong>: No</p>
+  <p><strong>¿Requiere Carga en dwh?</strong>: No</p>
+  <p><strong>Frecuencia Actualización Recomendada</strong>: Mensual</p>
+</details>
+
+<details>
+  <summary>15. Igestion_SGI</summary>
+  <p><strong>Ubicación origen</strong>: 172.16.3.110 / dwh</p>
+  <p><strong>Tablas de Origen</strong>: dwh.Igestion_SGI</p>
+  <p><strong>Descripción</strong>: Tabla con histórico de PQRSFs</p>
+  <p><strong>¿Requiere Transformación Intermedia?</strong>: No</p>
+  <p><strong>¿Requiere Carga en dwh?</strong>: Sí</p>
+  <p><strong>Frecuencia Actualización Recomendada</strong>: Mensual</p>
+</details>
+
+<details>
+  <summary>16. HistoricoRecuperado</summary>
+  <p><strong>Ubicación origen</strong>: Minerva/subsidio</p>
+  <p><strong>Tablas de Origen</strong>: subsidio.subsi113, subsidio.subsi115, subsidio.subsi11</p>
+  <p><strong>Descripción</strong>: Tabla con histórico de aportes recuperados</p>
+  <p><strong>¿Requiere Transformación Intermedia?</strong>: No</p>
+  <p><strong>¿Requiere Carga en dwh?</strong>: No</p>
+  <p><strong>Frecuencia Actualización Recomendada</strong>: Mensual</p>
+</details>
+
+<details>
+  <summary>17. servicios</summary>
+  <p><strong>Ubicación origen</strong>: 172.16.3.110 / dwh</p>
+  <p><strong>Tablas de Origen</strong>: dwh.servicios_sisu</p>
+  <p><strong>Descripción</strong>: Tabla con lista de servicios empresariales</p>
+  <p><strong>¿Requiere Transformación Intermedia?</strong>: No</p>
+  <p><strong>¿Requiere Carga en dwh?</strong>: Sí</p>
+  <p><strong>Frecuencia Actualización Recomendada</strong>: Mensual</p>
+</details>
+
+<details>
+  <summary>18. Metricas</summary>
+  <p><strong>Ubicación origen</strong>: 172.16.3.110 / dwh</p>
+  <p><strong>Tablas de Origen</strong>: dwh.Metricas</p>
+  <p><strong>Descripción</strong>: Tabla con la lista de métricas</p>
+  <p><strong>¿Requiere Transformación Intermedia?</strong>: No</p>
+  <p><strong>¿Requiere Carga en dwh?</strong>: Sí</p>
+  <p><strong>Frecuencia Actualización Recomendada</strong>: Solo si se implementa una nueva métrica</p>
+</details>
+
+<details>
+  <summary>19. Satisfaccion</summary>
+  <p><strong>Ubicación origen</strong>: 172.16.3.110 / dwh</p>
+  <p><strong>Tablas de Origen</strong>: dwh.op_Satisfacción</p>
+  <p><strong>Descripción</strong>: Tabla estructura de encuestas de satisfacción</p>
+  <p><strong>¿Requiere Transformación Intermedia?</strong>: Sí</p>
+  <p><strong>¿Requiere Carga en dwh?</strong>: Sí</p>
+  <p><strong>Frecuencia Actualización Recomendada</strong>: Mensual</p>
+</details>
+
+<details>
+  <summary>20. IndicadoresOMDummy_1</summary>
+  <p><strong>Ubicación origen</strong>: Drive</p>
+  <p><strong>Tablas de Origen</strong>: Indicadores.xlsx – Hoja 1</p>
+  <p><strong>Descripción</strong>: Tabla dummy con los indicadores que aplican para medición matriz RASCI</p>
+  <p><strong>¿Requiere Transformación Intermedia?</strong>: No</p>
+  <p><strong>¿Requiere Carga en dwh?</strong>: No</p>
+  <p><strong>Frecuencia Actualización Recomendada</strong>: Mensual</p>
+</details>
+
+<details>
+  <summary>21. IndicadoresOMDummy_2</summary>
+  <p><strong>Ubicación origen</strong>: Drive</p>
+  <p><strong>Tablas de Origen</strong>: Indicadores.xlsx – Hoja 3</p>
+  <p><strong>Descripción</strong>: Tabla dummy con los indicadores para satisfacción comportamiento calificación de matriz RASCI</p>
+  <p><strong>¿Requiere Transformación Intermedia?</strong>: No</p>
+  <p><strong>¿Requiere Carga en dwh?</strong>: No</p>
+  <p><strong>Frecuencia Actualización Recomendada</strong>: Mensual</p>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../js/init_mermaid.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/components/prism-dax.min.js"></script>
+      
+    
+  </body>
+</html>
